@@ -104,6 +104,16 @@ abstract class VideoPlayerPlatform extends PlatformInterface {
   Future<void> setMixWithOthers(bool mixWithOthers) {
     throw UnimplementedError('setMixWithOthers() has not been implemented.');
   }
+
+  /// Update camera rotation
+  Future<void> setCameraRotation(int textureId, double roll, double pitch, double yaw) {
+    throw UnimplementedError('setCameraRotation() has not been implemented.');
+  }
+
+  /// Set video media format
+  Future<void> setMediaFormat(int textureId, int mediaFormat) {
+    throw UnimplementedError('setMediaFormat() has not been implemented.');
+  }
 }
 
 class _PlaceholderImplementation extends VideoPlayerPlatform {}
@@ -348,6 +358,7 @@ class VideoPlayerOptions {
   VideoPlayerOptions({
     this.mixWithOthers = false,
     this.allowBackgroundPlayback = false,
+    this.mediaFormat = 0,
   });
 
   /// Set this to true to keep playing video in background, when app goes in background.
@@ -360,4 +371,25 @@ class VideoPlayerOptions {
   /// Note: This option will be silently ignored in the web platform (there is
   /// currently no way to implement this feature in this platform).
   final bool mixWithOthers;
+
+  /// set initial media format
+  final int mediaFormat;
+}
+
+/// Type of video format
+class MediaFormat {
+  /// Standard
+  static const int STANDARD = 0; // 0000
+  /// Monoscopic 180
+  static const int VR2D180 = 8; // 1000
+  /// Monoscopic 360
+  static const int VR2D360 = 10; // 1010
+  /// Stereoscopic 180 SideBySide
+  static const int VR3D180_SBS = 12; // 1100
+  /// Stereoscopic 180 OverUnder
+  static const int VR3D180_OU = 13; // 1101
+  /// Stereoscopic 180 SideBySide
+  static const int VR3D360_SBS = 14; // 1110
+  /// Stereoscopic 360 OverUnder
+  static const int VR3D360_OU = 15; // 1111
 }
