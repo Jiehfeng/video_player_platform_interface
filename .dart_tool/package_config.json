@@ -131,10 +131,10 @@
       "name": "video_player_platform_interface",
       "rootUri": "../",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-01-01T09:29:19.863757Z",
+  "generated": "2023-01-01T13:57:53.819399Z",
   "generator": "pub",
   "generatorVersion": "2.18.5"
 }
