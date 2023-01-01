@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
+import 'method_channel_video_player.dart';
+
 /// The interface that implementations of video_player must implement.
 ///
 /// Platform implementations should extend this class rather than implement it as `video_player`
@@ -19,7 +21,7 @@ abstract class VideoPlayerPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static VideoPlayerPlatform _instance = _PlaceholderImplementation();
+  static VideoPlayerPlatform _instance = MethodChannelVideoPlayer();
 
   /// The instance of [VideoPlayerPlatform] to use.
   ///
@@ -239,14 +241,7 @@ class VideoEvent {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        other is VideoEvent &&
-            runtimeType == other.runtimeType &&
-            eventType == other.eventType &&
-            duration == other.duration &&
-            size == other.size &&
-            rotationCorrection == other.rotationCorrection &&
-            listEquals(buffered, other.buffered);
+    return identical(this, other) || other is VideoEvent && runtimeType == other.runtimeType && eventType == other.eventType && duration == other.duration && size == other.size && rotationCorrection == other.rotationCorrection && listEquals(buffered, other.buffered);
   }
 
   @override
@@ -333,16 +328,10 @@ class DurationRange {
   }
 
   @override
-  String toString() =>
-      '${objectRuntimeType(this, 'DurationRange')}(start: $start, end: $end)';
+  String toString() => '${objectRuntimeType(this, 'DurationRange')}(start: $start, end: $end)';
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is DurationRange &&
-          runtimeType == other.runtimeType &&
-          start == other.start &&
-          end == other.end;
+  bool operator ==(Object other) => identical(this, other) || other is DurationRange && runtimeType == other.runtimeType && start == other.start && end == other.end;
 
   @override
   int get hashCode => Object.hash(start, end);
